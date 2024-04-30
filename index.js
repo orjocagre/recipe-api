@@ -8,5 +8,3 @@ app.use(express.json());
 app.listen(port, () => {
   console.log('Mi port ' + port);
 });
-
-const sequelize = require('./libs/sequelize')
