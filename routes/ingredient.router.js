@@ -1,20 +1,20 @@
 const express = require('express');
 const router = express.Router();
 
-const UsersService = require('../services/user.services');
-const service = new UsersService();
+const IngredientsService = require('../services/ingredient.services');
+const service = new IngredientsService();
 
 const validatorHandler = require('../middlewares/validator.handler');
 const {
-  createUserSchema,
-  updateUserSchema,
-  getUserSchema,
-} = require('../schemas/user.schema');
+  createIngredientSchema,
+  updateIngredientSchema,
+  getIngredientSchema,
+} = require('../schemas/ingredient.schema');
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await service.find();
-    res.status(200).json(users);
+    const ingredients = await service.find();
+    res.status(200).json(ingredients);
   } catch (err) {
     next(err);
   }
@@ -22,7 +22,7 @@ router.get('/', async (req, res, next) => {
 
 router.get(
   '/:id',
-  validatorHandler(getUserSchema, 'params'),
+  validatorHandler(getIngredientSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -35,7 +35,7 @@ router.get(
 
 router.post(
   '/',
-  validatorHandler(createUserSchema, 'body'),
+  validatorHandler(createIngredientSchema, 'body'),
   async (req, res, next) => {
     try {
       const body = req.body;
@@ -48,14 +48,14 @@ router.post(
 
 router.patch(
   '/:id',
-  validatorHandler(getUserSchema, 'params'),
-  validatorHandler(updateUserSchema, 'body'),
+  validatorHandler(getIngredientSchema, 'params'),
+  validatorHandler(updateIngredientSchema, 'body'),
   async (req, res, next) => {
     try {
       const body = req.body;
       const { id } = req.params;
-      const user = await service.update(id, body);
-      res.status(200).json(user);
+      const ingredient = await service.update(id, body);
+      res.status(200).json(ingredient);
     } catch (err) {
       next(err);
     }
@@ -64,7 +64,7 @@ router.patch(
 
 router.delete(
   '/:id',
-  validatorHandler(getUserSchema, 'params'),
+  validatorHandler(getIngredientSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;

@@ -16,10 +16,10 @@ module.exports = {
   },
 
   async down (queryInterface) {
-    await queryInterface.dropTable(USER_TABLE);
-    await queryInterface.dropTable(RECIPE_TABLE);
-    await queryInterface.dropTable(INGREDIENT_TABLE);
-    await queryInterface.dropTable(RECIPE_INGREDIENT_TABLE);
     await queryInterface.dropTable(REGULAR_INGREDIENT_TABLE);
+    await queryInterface.dropTable(RECIPE_INGREDIENT_TABLE);
+    await queryInterface.dropTable(INGREDIENT_TABLE);
+    await queryInterface.dropTable(RECIPE_TABLE);
+    await queryInterface.dropTable(USER_TABLE);
   }
 };

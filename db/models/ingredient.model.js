@@ -23,6 +23,18 @@ const IngredientSchema = {
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL',
   },
+  isPublic: {
+    type: DataTypes.BOOLEAN,
+    field: 'is_public',
+    allowNull: false,
+    defaultValue: false,
+  },
+  isCommon: {
+    type: DataTypes.BOOLEAN,
+    field: 'is_common',
+    allowNull: false,
+    defaultValue: false,
+  },
 };
 
 class Ingredient extends Model {
