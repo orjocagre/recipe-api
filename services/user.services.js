@@ -5,6 +5,16 @@ const { models } = require('./../libs/sequelize');
 class UsersService {
   constructor() {}
 
+  async login(userName, password) {
+    const user = await models.User.findOne({
+      where: {
+        userName,
+        password,
+      },
+    });
+    return user;
+  }
+
   async find() {
     const res = await models.User.findAll({
       include: ['regularIngredients'],

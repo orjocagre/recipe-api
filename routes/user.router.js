@@ -9,7 +9,22 @@ const {
   createUserSchema,
   updateUserSchema,
   getUserSchema,
+  loginUserSchema,
 } = require('../schemas/user.schema');
+
+router.post(
+  '/login',
+  validatorHandler(loginUserSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const { userName, password } = req.body;
+      const user = await service.login(userName, password);
+      res.status(200).json(user);
+    } catch (err) {
+      next(err);
+    }
+  },
+);
 
 router.get('/', async (req, res, next) => {
   try {

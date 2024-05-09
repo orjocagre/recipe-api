@@ -6,12 +6,16 @@ class RecipesService {
   constructor() {}
 
   async find() {
-    const res = await models.Recipe.findAll();
+    const res = await models.Recipe.findAll({
+      include: 'ingredients'
+    });
     return res;
   }
 
   async findOne(id) {
-    const recipe = await models.Recipe.findByPk(id);
+    const recipe = await models.Recipe.findByPk(id, {
+      include: 'ingredients'
+    });
     if (!recipe) {
       throw boom.notFound('recipe not found');
     }

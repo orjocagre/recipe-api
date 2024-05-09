@@ -34,11 +34,6 @@ const RecipeIngredientSchema = {
     type: DataTypes.DOUBLE,
     allowNull: false,
   },
-  measurementUnit: {
-    type: DataTypes.STRING,
-    field: 'measurement_unit',
-    allowNull: false,
-  },
 };
 
 class RecipeIngredient extends Model {
