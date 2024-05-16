@@ -4,6 +4,7 @@ const router = express.Router();
 const RecipesService = require('../services/recipe.services');
 const service = new RecipesService();
 
+const fileHandler = require('../middlewares/file.handler')
 const validatorHandler = require('../middlewares/validator.handler');
 const {
   createRecipeSchema,
@@ -35,11 +36,13 @@ router.get(
 
 router.post(
   '/',
-  validatorHandler(createRecipeSchema, 'body'),
+  // validatorHandler(createRecipeSchema, 'body'),
+  fileHandler.single('image'),
   async (req, res, next) => {
     try {
       const body = req.body;
-      res.status(201).json(await service.create(body));
+      const file = req.file;
+      res.status(201).json(await service.create(body, file));
     } catch (err) {
       next(err);
     }

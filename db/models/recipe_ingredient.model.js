@@ -31,9 +31,11 @@ const RecipeIngredientSchema = {
     onDelete: 'SET NULL',
   },
   amount: {
-    type: DataTypes.DOUBLE,
-    allowNull: false,
+    type: DataTypes.STRING,
   },
+  description: {
+    type: DataTypes.STRING,
+  }
 };
 
 class RecipeIngredient extends Model {

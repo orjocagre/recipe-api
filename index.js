@@ -1,6 +1,8 @@
 const express = require('express');
 const routerApi = require('./routes');
 const cors = require('cors');
+const path = require('path');
+
 const {
   logErrors,
   errorHandler,
@@ -11,6 +13,9 @@ const port = 3000;
 
 const app = express();
 app.use(express.json());
+
+app.use('/images', express.static(path.join(__dirname, '/optimize')));
+
 
 const whitelist = ['http://localhost:5173', 'http://recipe.com'];
 const corsOptions = {
